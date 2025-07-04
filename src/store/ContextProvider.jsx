@@ -41,7 +41,7 @@ export const ContextProvider = ({ children }) => {
 
         if (!token) {
             console.log('Author: No token found, redirecting to login');
-            window.location.href = 'https://journal-management-system-frontend.vercel.app/login';
+            window.location.href = 'https://journal-management-system-frontend.vercel.app';
             return;
         }
 
@@ -80,7 +80,7 @@ export const ContextProvider = ({ children }) => {
             } catch (error) {
                 console.error('Author: Initialization error:', error);
                 localStorage.removeItem('jwtToken');
-                window.location.href = 'https://journal-management-system-frontend.vercel.app/login';
+                window.location.href = 'https://journal-management-system-frontend.vercel.app';
             } finally {
                 setloader(false);
             }
@@ -97,7 +97,7 @@ export const ContextProvider = ({ children }) => {
         const storageListener = (e) => {
             if (e.key === 'logout-event') {
                 localStorage.removeItem('jwtToken');
-                window.location.href = 'https://journal-management-system-frontend.vercel.app/login';
+                window.location.href = 'https://journal-management-system-frontend.vercel.app';
             }
         };
         window.addEventListener('storage', storageListener);
