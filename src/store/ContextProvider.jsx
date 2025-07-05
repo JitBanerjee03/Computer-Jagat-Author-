@@ -17,6 +17,23 @@ export const ContextProvider = ({ children }) => {
     const [author, setAuthor] = useState(null);
     const [journals, setJournals] = useState([]);
     const [loader, setloader] = useState(true);
+    
+    // Cross-tab + cross-domain logout via postMessage
+    useEffect(() => {
+    const messageHandler = (event) => {
+        if (event.data?.type === 'LOGOUT') {
+        localStorage.removeItem('jwtToken');
+        console.log('Token cleared via postMessage logout');
+        window.location.href = 'https://journal-management-system-frontend.vercel.app/login';
+        }
+    };
+
+    window.addEventListener('message', messageHandler);
+    return () => {
+        window.removeEventListener('message', messageHandler);
+    };
+    }, []);
+
 
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
