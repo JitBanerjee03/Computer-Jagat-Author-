@@ -21,11 +21,9 @@ import {
   Warning,
   ArrowBack,
   Print,
-  Download,
   Info
 } from '@mui/icons-material';
 import { format } from 'date-fns';
-import { saveAs } from 'file-saver';
 
 const AssociateEditorRecommendation = () => {
     const { journalId } = useParams();
@@ -53,11 +51,8 @@ const AssociateEditorRecommendation = () => {
                 );
 
                 if (response.status === 404) {
-                    const errorData = await response.json();
-                    if (errorData.detail === "No recommendations found for this journal.") {
-                        setNoRecommendations(true);
-                        return;
-                    }
+                    setNoRecommendations(true);
+                    return;
                 }
 
                 if (!response.ok) {
@@ -83,11 +78,6 @@ const AssociateEditorRecommendation = () => {
 
     const handlePrint = () => {
         window.print();
-    };
-
-    const handleDownload = (rec) => {
-        const blob = new Blob([JSON.stringify(rec, null, 2)], { type: 'application/json' });
-        saveAs(blob, `associate-editor-recommendation-${rec.id}.json`);
     };
 
     const getDecisionIcon = (decision) => {
@@ -208,7 +198,7 @@ const AssociateEditorRecommendation = () => {
                                 {getDecisionIcon(rec.recommendation)}
                                 <Box>
                                     <Typography variant="h5" component="div" sx={{ fontWeight: 'medium' }}>
-                                        Recommendation for Journal ID: {rec.journal}
+                                        Recommendation for: {rec.journal_title || `Journal ID: ${rec.journal}`}
                                     </Typography>
                                     <Typography variant="subtitle1" color="text.secondary">
                                         Submitted by Associate Editor
@@ -224,17 +214,6 @@ const AssociateEditorRecommendation = () => {
                                 </Typography>
                             </Box>
                         </Box>
-
-                        {/*<Box position="absolute" top={16} right={16}>
-                            <Tooltip title="Download">
-                                <IconButton 
-                                    onClick={() => handleDownload(rec)}
-                                    color="secondary"
-                                >
-                                    <Download />
-                                </IconButton>
-                            </Tooltip>
-                        </Box>*/}
 
                         <Divider sx={{ my: 2 }} />
 
