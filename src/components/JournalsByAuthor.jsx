@@ -323,7 +323,7 @@ const JournalsByAuthor = ({ authorArticles }) => {
                             className="d-flex align-items-center"
                             title={article.chief_editor_recommendation ? 
                               "View Chief Editor Recommendation" : 
-                              "No Chief Editor Recommendation"}
+                              "Chief Editor Recommendation"}
                             onClick={() => handleRecommendationClick(article.id, 'chief-editor')}
                           >
                             <FaCrown className="me-1" /> Chief
@@ -334,7 +334,7 @@ const JournalsByAuthor = ({ authorArticles }) => {
                             className="d-flex align-items-center"
                             title={article.area_editor_recommendation ? 
                               "View Area Editor Recommendation" : 
-                              "No Area Editor Recommendation"}
+                              "Area Editor Recommendation"}
                             onClick={() => handleRecommendationClick(article.id, 'area-editor')}
                           >
                             <FaUserShield className="me-1" /> Area
@@ -345,7 +345,7 @@ const JournalsByAuthor = ({ authorArticles }) => {
                             className="d-flex align-items-center"
                             title={article.associate_editor_recommendation ? 
                               "View Associate Editor Recommendation" : 
-                              "No Associate Editor Recommendation"}
+                              "Associate Editor Recommendation"}
                             onClick={() => handleRecommendationClick(article.id, 'associate-editor')}
                           >
                             <FaUserTie className="me-1" /> Assoc
